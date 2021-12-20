@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import thunk from 'redux-thunk'
+import HomeStackScreen from './src/appNavigation/routes';
 
 const persistConfig = {
   key: 'root',
