@@ -14,9 +14,24 @@ import styles from './css';
 export default function ProductDetail({navigation, route}) {
   const {data} = route.params;
   const [checked, setChecked] = useState('Nho');
+  const [giaTien, setGiaTien] = useState();
   const [iconHeart, setIconHeart] = useState('gray');
+
+  const checkedNho = () => {
+    setChecked('Nho');
+    setGiaTien(0);
+  };
+  const checkedVua = () => {
+    setChecked('Vua');
+    setGiaTien(6000);
+  };
+  const checkedLon = () => {
+    setChecked('Lon');
+    setGiaTien(10000);
+  };
+
   return (
-    <View>
+    <View style={{backgroundColor: 'white'}}>
       <ScrollView style={{height: 640}}>
         <Image style={styles.imageStyle} source={{uri: data?.image}} />
         <View style={{marginLeft: 10, marginRight: 10}}>
@@ -42,10 +57,17 @@ export default function ProductDetail({navigation, route}) {
             {`${data?.base_price}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}đ
           </Text>
           <Text style={{marginTop: 20}}>{data?.description}</Text>
+        </View>
+        <View style={styles.views} />
+        <View style={{marginLeft: 10, marginRight: 10}}>
+          <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+            Size {<Text style={{color: 'red'}}>*</Text>}
+          </Text>
+          <Text>Chọn 1 loại size</Text>
           <View style={styles.flexRadio}>
             <RadioButton
               value={checked}
-              onPress={() => setChecked('Nho')}
+              onPress={checkedNho}
               status={checked === 'Nho' ? 'checked' : 'unchecked'}
             />
             <View style={styles.flexText}>
@@ -53,10 +75,11 @@ export default function ProductDetail({navigation, route}) {
               <Text style={styles.styleText}>+ 0đ</Text>
             </View>
           </View>
+          <View style={styles.viewsRadio} />
           <View style={styles.flexRadio}>
             <RadioButton
               value={checked}
-              onPress={() => setChecked('Vua')}
+              onPress={checkedVua}
               status={checked === 'Vua' ? 'checked' : 'unchecked'}
             />
             <View style={styles.flexText}>
@@ -64,10 +87,11 @@ export default function ProductDetail({navigation, route}) {
               <Text style={styles.styleText}>+ 6.000đ</Text>
             </View>
           </View>
+          <View style={styles.viewsRadio} />
           <View style={styles.flexRadio}>
             <RadioButton
               value={checked}
-              onPress={() => setChecked('Lon')}
+              onPress={checkedLon}
               status={checked === 'Lon' ? 'checked' : 'unchecked'}
             />
             <View style={styles.flexText}>
@@ -75,6 +99,9 @@ export default function ProductDetail({navigation, route}) {
               <Text style={styles.styleText}>+ 10.000đ</Text>
             </View>
           </View>
+        </View>
+        <View style={styles.views} />
+        <View style={{marginLeft: 10, marginRight: 10, marginBottom: 30}}>
           <View>
             <Text style={{fontSize: 16, fontWeight: 'bold'}}>Yêu cầu khác</Text>
             <Text>Những tùy chọn khác</Text>
@@ -85,8 +112,21 @@ export default function ProductDetail({navigation, route}) {
           </View>
         </View>
       </ScrollView>
-      <View style={{backgroundColor: 'white', height: 80}}>
-        <Text>abcasgfasdfdg</Text>
+      <View
+        elevation={30}
+        style={{
+          backgroundColor: 'white',
+          height: 80,
+          justifyContent: 'center',
+        }}>
+        <TouchableOpacity style={styles.styleButton}>
+          <Text style={styles.alignText}>
+            {`${
+              giaTien ? data?.base_price + giaTien : data?.base_price
+            }`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            đ
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
