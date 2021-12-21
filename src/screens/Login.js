@@ -39,7 +39,7 @@ export default function LoginScreen({navigation}) {
       if (arr.length > 0) {
         let curUser = arr[0];
         AsyncStorage.setItem('curUser', JSON.stringify(curUser));
-        navigation.navigate('ProductDetail');
+        navigation.navigate('goToHome');
       } else alert('Email hoặc mật khẩu không chính xác!');
     } else {
       alert('Email hoặc mật khẩu không chính xác!');
@@ -51,7 +51,7 @@ export default function LoginScreen({navigation}) {
   const checkLogin = async () => {
     let userData = await AsyncStorage.getItem('curUser');
     console.log(userData);
-    if (userData) navigation.navigate('ProductDetail');
+    if (userData) navigation.navigate('goToHome');
   };
   useEffect(() => {
     checkLogin();

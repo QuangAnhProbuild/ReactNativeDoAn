@@ -17,6 +17,7 @@ import LoginScreen from '../screens/Login';
 import BottomTab from './index';
 import Places from '../screens/shop/map';
 import detail from '../screens/ProductDetail';
+import NewsDetail from '../screens/newsDetail';
 
 export default function HomeStackScreen() {
   const HomeStack = createNativeStackNavigator();
@@ -24,11 +25,12 @@ export default function HomeStackScreen() {
     <NavigationContainer>
       <HomeStack.Navigator screenOptions={{headerShown: false}}>
         <HomeStack.Screen name="ProductList" component={LoginScreen} />
-        <HomeStack.Screen name="ProductDetail" component={BottomTab} />
+        <HomeStack.Screen name="goToHome" component={BottomTab} />
         <HomeStack.Screen name="LoginScreen" component={LoginScreen} />
         <HomeStack.Screen name="SignUpScreen" component={SignUpScreen} />
         <HomeStack.Screen name="Places" component={Places} />
         <HomeStack.Screen name="Detail" component={ProductDetail} />
+        <HomeStack.Screen name="newsDetail" component={NewsDetail} />
       </HomeStack.Navigator>
     </NavigationContainer>
   );

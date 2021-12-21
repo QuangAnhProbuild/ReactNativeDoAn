@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {getNewsfeed} from '../../../service/Api';
 import {dataKhamPha} from './data';
-export default function UuDaiDacBiet() {
+export default function UuDaiDacBiet({scrollY}) {
   // const [newFeed, setNewfeed] = useState([]);
   // const getApiNewsfeed = async () => {
   //   try {
@@ -29,10 +29,10 @@ export default function UuDaiDacBiet() {
   const data = dataKhamPha.news?.[0].posts;
 
   const renderItem = ({item}) => (
-    <TouchableOpacity style={{width: '50%'}}>
+    <TouchableOpacity style={{width: 170}}>
       <Image source={{uri: item.thumbnail}} style={styles.imgStyle} />
       <View style={styles.rowPrice}>
-        <Text style={{width: 180}}>{item.title}</Text>
+        <Text style={{width: 170}}>{item.title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -40,16 +40,18 @@ export default function UuDaiDacBiet() {
   // const dataLe = data.filter((e, index) => index % 2 !== 0);
 
   return (
-    <View>
+    <View style={{width: 335}}>
       <FlatList
         data={data}
         renderItem={renderItem}
         numColumns={2}
         showsVerticalScrollIndicator={false}
         columnWrapperStyle={{
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           marginBottom: 10,
-          flex: 1,
+        }}
+        onScroll={e => {
+          scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
       />
     </View>
@@ -62,8 +64,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   imgStyle: {
-    height: 180,
-    width: 180,
+    height: 160,
+    width: 160,
     borderRadius: 8,
     marginTop: 10,
     marginLeft: 5,

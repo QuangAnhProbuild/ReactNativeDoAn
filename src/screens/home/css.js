@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   textFont: {
     marginTop: 8,
     fontWeight: 'bold',
+    width: 150,
   },
   styleHeader: {
     paddingTop: 10,

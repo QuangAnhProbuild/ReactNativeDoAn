@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from './css';
 export default function SlideShow() {
