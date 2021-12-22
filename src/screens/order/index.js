@@ -58,7 +58,10 @@ export default function Order({navigation}) {
     navigation.navigate('Detail', {data: item});
 
   const renderItem = item => (
-    <TouchableOpacity style={styles.touchable} onPress={moveToDetail(item)} key={item._id}>
+    <TouchableOpacity
+      style={styles.touchable}
+      onPress={moveToDetail(item)}
+      key={item._id}>
       <View style={styles.flexRow}>
         <View style={{flexDirection: 'row'}}>
           <Image source={{uri: item.image}} style={styles.imgStyle} />
@@ -82,12 +85,12 @@ export default function Order({navigation}) {
   );
 
   const imagesButton = [
-    {key: 1,image: require('../../assets/images/capheda.png')},
-    {key: 2,image: require('../../assets/images/traTraiCay.png')},
-    {key: 3,image: require('../../assets/images/anvat.png')},
-    {key: 4,image: require('../../assets/images/iconCafe.png')},
-    {key: 5,image: require('../../assets/images/caphedaxay.jpg')},
-    {key: 6,image: require('../../assets/images/iconGiaoHang.png')},
+    {key: 1, image: require('../../assets/images/capheda.png')},
+    {key: 2, image: require('../../assets/images/traTraiCay.png')},
+    {key: 3, image: require('../../assets/images/anvat.png')},
+    {key: 4, image: require('../../assets/images/iconCafe.png')},
+    {key: 5, image: require('../../assets/images/caphedaxay.jpg')},
+    {key: 6, image: require('../../assets/images/iconGiaoHang.png')},
   ];
 
   return (

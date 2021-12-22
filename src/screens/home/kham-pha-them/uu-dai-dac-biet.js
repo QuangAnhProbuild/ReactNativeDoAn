@@ -6,30 +6,15 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ScrollView,
-  TextInput,
 } from 'react-native';
-import {getNewsfeed} from '../../../service/Api';
 import {dataKhamPha} from './data';
-export default function UuDaiDacBiet({scrollY}) {
-  // const [newFeed, setNewfeed] = useState([]);
-  // const getApiNewsfeed = async () => {
-  //   try {
-  //     const result = await getNewsfeed();
-  //     console.log(result);
-  //     setNewfeed(result.data.news[0].posts);
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getApiNewsfeed();
-  // }, [newFeed]);
+export default function UuDaiDacBiet({scrollY, navigation}) {
   const data = dataKhamPha.news?.[0].posts;
+  const moveToDetail = item => () =>
+    navigation.navigate('newsDetail', {data: item});
 
   const renderItem = ({item}) => (
-    <TouchableOpacity style={{width: 170}}>
+    <TouchableOpacity style={{width: 170}} onPress={moveToDetail(item)}>
       <Image source={{uri: item.thumbnail}} style={styles.imgStyle} />
       <View style={styles.rowPrice}>
         <Text style={{width: 170}}>{item.title}</Text>

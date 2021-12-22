@@ -83,25 +83,29 @@ function Header() {
     </View>
   );
 }
-export default function TrangChuPage() {
+export default function TrangChuPage({navigation}) {
   const [screen, setScreen] = useState('UuDaiDacBiet');
   const scrollY = new Animated.Value(0);
-  const diffClamp = Animated.diffClamp(scrollY, 0, 1520);
+  const diffClamp = Animated.diffClamp(
+    scrollY,
+    0,
+    screen == 'CoffeeLove' ? 380 : 1520,
+  );
   const translateY = diffClamp.interpolate({
-    inputRange: [0, 4],
-    outputRange: [0, -1],
+    inputRange: [0, screen == 'CoffeeLove' ? 380 : 4],
+    outputRange: [0, screen == 'CoffeeLove' ? -380 : -1],
   });
   console.log(screen);
   const ToggleScreen = () => {
     if (screen) {
       if (screen == 'UuDaiDacBiet') {
-        return <UuDaiDacBiet scrollY={scrollY} />;
+        return <UuDaiDacBiet scrollY={scrollY} navigation={navigation} />;
       }
       if (screen == 'CapNhatTuNha') {
-        return <CapNhatTuNha />;
+        return <CapNhatTuNha scrollY={scrollY} navigation={navigation} />;
       }
       if (screen == 'CoffeeLove') {
-        return <CoffeeLove />;
+        return <CoffeeLove scrollY={scrollY} navigation={navigation} />;
       }
     }
   };

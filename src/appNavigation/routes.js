@@ -1,23 +1,14 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Login from '../screens/Login';
-import ProductList from '../screens/ProductList';
 import ProductDetail from '../screens/productDetail/index';
-import Shop from '../screens/Shop';
-import Bag from '../screens/Bag';
-import Wishlist from '../screens/Wishlist';
-import Account from '../screens/Account';
 import SignUpScreen from '../screens/signUpScreen';
-import ProfileScreen from '../screens/Profile';
 import LoginScreen from '../screens/Login';
 import BottomTab from './index';
 import Places from '../screens/shop/map';
-import detail from '../screens/ProductDetail';
 import NewsDetail from '../screens/newsDetail';
+import UuDaiDacBiet from '../screens/home/kham-pha-them/uu-dai-dac-biet';
 
 export default function HomeStackScreen() {
   const HomeStack = createNativeStackNavigator();
@@ -31,6 +22,7 @@ export default function HomeStackScreen() {
         <HomeStack.Screen name="Places" component={Places} />
         <HomeStack.Screen name="Detail" component={ProductDetail} />
         <HomeStack.Screen name="newsDetail" component={NewsDetail} />
+        <HomeStack.Screen name="UuDaiDacBiet" component={UuDaiDacBiet} />
       </HomeStack.Navigator>
     </NavigationContainer>
   );
