@@ -9,6 +9,7 @@ import {
   TextInput,
   Modal,
 } from 'react-native';
+import {useRef} from 'react';
 // import {FlatList} from 'react-native-gesture-handler';
 import {getProduct} from '../../service/Api';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -85,19 +86,104 @@ export default function Order({navigation}) {
   );
 
   const imagesButton = [
-    {key: 1, image: require('../../assets/images/capheda.png')},
-    {key: 2, image: require('../../assets/images/traTraiCay.png')},
-    {key: 3, image: require('../../assets/images/anvat.png')},
-    {key: 4, image: require('../../assets/images/iconCafe.png')},
-    {key: 5, image: require('../../assets/images/caphedaxay.jpg')},
-    {key: 6, image: require('../../assets/images/iconGiaoHang.png')},
+    {
+      key: 1,
+      image: require('../../assets/images/capheda.png'),
+      height: 780,
+      data: filterSearch1,
+      text: 'Cà phê',
+    },
+    {
+      key: 2,
+      image: require('../../assets/images/traTraiCay.png'),
+      height: 780,
+      data: filterSearch2,
+      text: 'Cà phê',
+    },
+    {
+      key: 3,
+      image: require('../../assets/images/anvat.png'),
+      height: 780,
+      data: filterSearch3,
+      text: 'Cà phê',
+    },
+    {
+      key: 4,
+      image: require('../../assets/images/iconCafe.png'),
+      height: 780,
+      data: filterSearch4,
+      text: 'Cà phê',
+    },
+    {
+      key: 5,
+      image: require('../../assets/images/caphedaxay.jpg'),
+      height: 780,
+      data: filterSearch5,
+      text: 'Cà phê',
+    },
+    {
+      key: 6,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch6,
+      text: 'Cà phê',
+    },
+    {
+      key: 7,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch7,
+      text: 'Cà phê',
+    },
+    {
+      key: 8,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch8,
+      text: 'Cà phê',
+    },
+    {
+      key: 9,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch9,
+      text: 'Cà phê',
+    },
+    {
+      key: 10,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch10,
+      text: 'Cà phê',
+    },
+    {
+      key: 11,
+      image: require('../../assets/images/iconGiaoHang.png'),
+      height: 780,
+      data: filterSearch11,
+      text: 'Cà phê',
+    },
   ];
-
+  const scrollRef = useRef();
+  const onPressTouch = () => {
+    scrollRef.current?.scrollTo({
+      y: 600,
+      animated: true,
+    });
+  };
   return (
     <LinearGradient colors={['white', '#F2F5A9', '#FACC2E']}>
       <View style={{flexDirection: 'row'}}>
         {imagesButton.map(e => (
-          <TouchableOpacity style={styles.borderButton} key={e.key}>
+          <TouchableOpacity
+            style={styles.borderButton}
+            key={e.key}
+            onPress={() =>
+              scrollRef.current?.scrollTo({
+                y: 800,
+                animated: true,
+              })
+            }>
             <Image
               style={{
                 height: 40,
@@ -111,7 +197,17 @@ export default function Order({navigation}) {
           </TouchableOpacity>
         ))}
       </View>
-      <ScrollView>
+      <ScrollView ref={scrollRef}>
+        <View>
+          {imagesButton.map(e => (
+            <View>
+              <Text>{e.text}</Text>
+              <View>{e.data.map(renderItem)}</View>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+      {/* <ScrollView ref={scrollRef}>
         <View>
           <Text>Các loại ly</Text>
           {filterSearch1.map(renderItem)}
@@ -156,7 +252,7 @@ export default function Order({navigation}) {
           <Text>Thưởng thức tại nhà</Text>
           {filterSearch11.map(renderItem)}
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </LinearGradient>
   );
 }
