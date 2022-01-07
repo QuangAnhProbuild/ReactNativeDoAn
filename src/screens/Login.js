@@ -50,12 +50,12 @@ export default function LoginScreen({navigation}) {
   };
   const checkLogin = async () => {
     let userData = await AsyncStorage.getItem('curUser');
-    console.log(userData);
     if (userData) navigation.navigate('goToHome');
   };
   useEffect(() => {
     checkLogin();
   }, []);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

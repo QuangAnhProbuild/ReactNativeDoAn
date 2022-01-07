@@ -9,6 +9,7 @@ import MyTabBar from '../components/myTabBar';
 import TrangChuPage from '../screens/home';
 import Order from '../screens/order';
 import AllStore from '../screens/shop/store';
+import Spoint from '../screens/spoint/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ export default function BottomTab() {
       <Tab.Screen name="TrangChu" component={TrangChuPage} />
       <Tab.Screen name="Order" component={Order} />
       <Tab.Screen name="AllStore" component={AllStore} />
-      <Tab.Screen name="Bag" component={Bag} />
+      <Tab.Screen name="Spoint" component={Spoint} />
       <Tab.Screen name="Logout" component={ProfileScreen} />
     </Tab.Navigator>
   );

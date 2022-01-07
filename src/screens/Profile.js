@@ -38,7 +38,7 @@ export default function ProfileScreen({navigation}) {
             borderRadius: 100,
           }}
           source={{
-            uri: 'https://instagram.fhan14-2.fna.fbcdn.net/v/t51.2885-19/s320x320/64734232_793442244390540_698695517252616192_n.jpg?_nc_ht=instagram.fhan14-2.fna.fbcdn.net&_nc_cat=100&_nc_ohc=T5ez4dr77_YAX_daBkY&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT9AfCwz2QXYl4EC6PNa81xVJvcQ8B4TfIUKYnilzExaZQ&oe=61C45915&_nc_sid=7bff83',
+            uri: 'https://scontent.fhan2-2.fna.fbcdn.net/v/t39.30808-6/269804499_3197696757125672_5339279476620175549_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=af2BroKJ6HIAX9TOCdA&_nc_ht=scontent.fhan2-2.fna&oh=00_AT-PP4iUUgFkW-4X6pQhlVZsfY-RxiobSzI5q-yJSpsAug&oe=61D70ED9',
           }}
         />
         <Text

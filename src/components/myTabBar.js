@@ -6,7 +6,7 @@ export default function MyTabBar({state, descriptors, navigation}) {
     {img: require('../assets/images/Home.png'), text: 'Trang chủ'},
     {img: require('../assets/images/search.png'), text: 'Đặt hàng'},
     {img: require('../assets/images/Basket.png'), text: 'Cửa hàng'},
-    {img: require('../assets/images/profile.png'), text: 'Tích điểm'},
+    {img: require('../assets/images/card.jpg'), text: 'Tích điểm'},
     {img: require('../assets/images/profile.png'), text: 'Khác'},
   ];
   return (

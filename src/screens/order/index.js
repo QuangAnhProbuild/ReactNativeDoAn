@@ -1,55 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
+  Dimensions,
   TouchableOpacity,
-  Image,
   StyleSheet,
   ScrollView,
+  Button,
+  Image,
   TextInput,
-  Modal,
 } from 'react-native';
-import {useRef} from 'react';
-// import {FlatList} from 'react-native-gesture-handler';
 import {getProduct} from '../../service/Api';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import LinearGradient from 'react-native-linear-gradient';
 import styles from './css';
-export default function Order({navigation}) {
-  const [order, setOrder] = useState([]);
+import LatteMocha from './product/latte-mocha';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import TraSua from './product/tra-sua';
+import ComboDoAnVat from './product/combo-doanvat';
+import ChaiCaPhe from './product/chai-ca-phe';
+import CookieChocolate from './product/cookie-chocolate';
+import CacLoaiTra from './product/cac-loai-tra';
+import DoUongKhac from './product/do-uong-khac';
+import ModalTimKiem from './modal-tim-kiem';
 
+export default function Order({navigation}) {
+  const scrollRef = useRef();
+  const [order, setOrder] = useState([]);
+  const [ds, setDs] = useState([]);
+  const [isShowModalTimKiem, setIsShowModalTimKiem] = useState(false);
+  const [click, setClick] = useState('');
   const getListProduct = async () => {
     try {
       const result = await getProduct();
       setOrder(result.data.data);
-      console.log(result);
+      setDs(result.data.data);
     } catch (error) {
       console.log(error);
     }
   };
-  const filterSearch1 = order.filter(
-    e => e.categ_id?.[0] === 9 && e.categ_id?.[1] === 20,
-  );
-  const filterSearch2 = order.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 72,
-  );
-  const filterSearch3 = order.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 10,
-  );
-  const filterSearch4 = order.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 2,
-  );
-  const filterSearch5 = order.filter(
-    e => e.categ_id?.[0] === 5 && e.categ_id?.[1] === 72,
-  );
-  const filterSearch6 = order.filter(
-    e => e.categ_id?.[0] === 18 && e.categ_id?.[1] === 22,
-  );
-  const filterSearch7 = order.filter(e => e.categ_id?.[0] === 1);
-  const filterSearch8 = order.filter(e => e.categ_id?.[0] === 2);
-  const filterSearch9 = order.filter(e => e.categ_id?.[0] === 5);
-  const filterSearch10 = order.filter(e => e.categ_id?.[0] === 12);
-  const filterSearch11 = order.filter(e => e.categ_id?.[0] === 18);
 
   useEffect(() => {
     getListProduct();
@@ -78,181 +65,219 @@ export default function Order({navigation}) {
         <Ionicons
           style={{alignSelf: 'flex-end', justifyContent: 'flex-end'}}
           name="add-circle"
-          size={25}
+          size={40}
           color="orange"
         />
       </View>
     </TouchableOpacity>
   );
-
+  const filterSearch1 = order?.filter(
+    e => e.categ_id?.[0] === 9 && e.categ_id?.[1] === 20,
+  );
+  const filterSearch2 = order?.filter(
+    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 72,
+  );
+  const filterSearch3 = order?.filter(
+    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 10,
+  );
+  const filterSearch4 = order?.filter(
+    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 2,
+  );
+  const filterSearch5 = order?.filter(
+    e => e.categ_id?.[0] === 5 && e.categ_id?.[1] === 72,
+  );
+  const filterSearch6 = order?.filter(
+    e => e.categ_id?.[0] === 18 && e.categ_id?.[1] === 22,
+  );
+  const filterSearch7 = order?.filter(
+    e => e.categ_id?.[0] === 1 && e.categ_id.length === 1,
+  );
+  const filterSearch8 = order?.filter(
+    e => e.categ_id?.[0] === 2 && e.categ_id.length === 1,
+  );
+  const filterSearch9 = order?.filter(
+    e => e.categ_id?.[0] === 5 && e.categ_id.length === 1,
+  );
+  const filterSearch10 = order?.filter(
+    e => e.categ_id?.[0] === 12 && e.categ_id.length === 1,
+  );
+  const filterSearch11 = order?.filter(
+    e => e.categ_id?.[0] === 18 && e.categ_id.length === 1,
+  );
+  const screenWidth = Dimensions.get('window').width;
   const imagesButton = [
     {
       key: 1,
       image: require('../../assets/images/capheda.png'),
-      height: 780,
       data: filterSearch1,
-      text: 'Cà phê',
+      text: 'Latte Mocha',
+      screenWidth: 0,
+      click: 'LatteMocha',
     },
     {
       key: 2,
       image: require('../../assets/images/traTraiCay.png'),
-      height: 780,
-      data: filterSearch2,
-      text: 'Cà phê',
+      data: filterSearch3?.concat(filterSearch2),
+      text: 'Tra Sua',
+      screenWidth: screenWidth,
+      click: 'TraSua',
     },
     {
       key: 3,
-      image: require('../../assets/images/anvat.png'),
-      height: 780,
-      data: filterSearch3,
-      text: 'Cà phê',
+      image: require('../../assets/images/Juice.png'),
+      data: filterSearch6,
+      text: 'Combo Do An Vat',
+      screenWidth: screenWidth * 2,
+      click: 'ComboDoAnVat',
     },
     {
       key: 4,
       image: require('../../assets/images/iconCafe.png'),
-      height: 780,
       data: filterSearch4,
-      text: 'Cà phê',
+      text: 'Chai Cà phê',
+      screenWidth: screenWidth * 3,
+      click: 'ChaiCaPhe',
     },
     {
       key: 5,
       image: require('../../assets/images/caphedaxay.jpg'),
-      height: 780,
       data: filterSearch5,
-      text: 'Cà phê',
+      text: 'Cookie Chocolate',
+      screenWidth: screenWidth * 4,
+      click: 'CookieChocolate',
     },
     {
       key: 6,
       image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
       data: filterSearch6,
-      text: 'Cà phê',
+      text: 'Cac loai tra',
+      screenWidth: screenWidth * 5,
+      click: 'CacLoaiTra',
     },
     {
       key: 7,
-      image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
+      image: require('../../assets/images/card.jpg'),
       data: filterSearch7,
-      text: 'Cà phê',
-    },
-    {
-      key: 8,
-      image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
-      data: filterSearch8,
-      text: 'Cà phê',
-    },
-    {
-      key: 9,
-      image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
-      data: filterSearch9,
-      text: 'Cà phê',
-    },
-    {
-      key: 10,
-      image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
-      data: filterSearch10,
-      text: 'Cà phê',
-    },
-    {
-      key: 11,
-      image: require('../../assets/images/iconGiaoHang.png'),
-      height: 780,
-      data: filterSearch11,
-      text: 'Cà phê',
+      text: 'Do uong khac',
+      screenWidth: screenWidth * 6,
+      click: 'DoUongKhac',
     },
   ];
-  const scrollRef = useRef();
-  const onPressTouch = () => {
-    scrollRef.current?.scrollTo({
-      y: 600,
-      animated: true,
-    });
+  const [useScroll, setUseScroll] = useState(0);
+  const [search, setSearch] = useState('');
+  const handleScroll = event => {
+    setUseScroll(event.nativeEvent.contentOffset.x);
   };
+  useEffect(() => {
+    setClick('');
+  }, [useScroll]);
+
+  const searchData = (search, data) => {
+    let filterData = [];
+    for (var i = 0; i < order?.length; i++) {
+      search = search.toLowerCase();
+      var product_name = order[i].product_name.toLocaleLowerCase();
+      if (product_name.includes(search)) {
+        filterData.push(data[i]);
+      }
+    }
+    return filterData;
+    // setOrder(order)
+  };
+  useEffect(() => {
+    let b = searchData(search, order);
+    setDs(b);
+  }, [search]);
   return (
-    <LinearGradient colors={['white', '#F2F5A9', '#FACC2E']}>
-      <View style={{flexDirection: 'row'}}>
-        {imagesButton.map(e => (
-          <TouchableOpacity
-            style={styles.borderButton}
-            key={e.key}
-            onPress={() =>
-              scrollRef.current?.scrollTo({
-                y: 800,
-                animated: true,
-              })
-            }>
-            <Image
-              style={{
-                height: 40,
-                marginTop: 10,
-                width: 28,
-                alignSelf: 'center',
-                justifyContent: 'center',
-              }}
-              source={e.image}
-            />
-          </TouchableOpacity>
-        ))}
+    <View>
+      {/* <TextInput placeholder="Nhập gì đó" onChangeText={setSearch} /> */}
+      <TouchableOpacity onPress={() => setIsShowModalTimKiem(true)}>
+        <Ionicons name="heart" size={25} color="orange" />
+      </TouchableOpacity>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View style={styles.ButtonContainer}>
+          <ScrollView horizontal={true}>
+            {imagesButton.map(e => (
+              <TouchableOpacity
+                key={e.key}
+                style={[
+                  styles.borderButton,
+                  {
+                    backgroundColor:
+                      click === e.click ||
+                      useScroll.toFixed() === e.screenWidth.toFixed()
+                        ? '#F7D358'
+                        : 'white',
+                  },
+                ]}
+                onPress={() => {
+                  scrollRef.current?.scrollTo({
+                    x: e.screenWidth,
+                    y: 0,
+                    animated: true,
+                  });
+                  setClick(e.click);
+                }}>
+                <Image
+                  style={{
+                    height: 40,
+                    marginTop: 10,
+                    width: 28,
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                  }}
+                  source={e.image}
+                />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
-      <ScrollView ref={scrollRef}>
-        <View>
-          {imagesButton.map(e => (
-            <View>
-              <Text>{e.text}</Text>
-              <View>{e.data.map(renderItem)}</View>
-            </View>
-          ))}
+      <ScrollView
+        onScroll={handleScroll}
+        horizontal={true}
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        ref={scrollRef}>
+        <View style={styles.ScrollContainer}>
+          <LatteMocha
+            data={filterSearch2?.concat(filterSearch3)}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <TraSua
+            data={filterSearch5?.concat(filterSearch4, filterSearch1)}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <ComboDoAnVat
+            data={filterSearch6?.concat(filterSearch10)}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <ChaiCaPhe data={filterSearch7} renderItem={renderItem} />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <CookieChocolate data={filterSearch8} renderItem={renderItem} />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <CacLoaiTra data={filterSearch9} renderItem={renderItem} />
+        </View>
+        <View style={styles.ScrollContainer}>
+          <DoUongKhac data={filterSearch11} renderItem={renderItem} />
         </View>
       </ScrollView>
-      {/* <ScrollView ref={scrollRef}>
-        <View>
-          <Text>Các loại ly</Text>
-          {filterSearch1.map(renderItem)}
-        </View>
-        <View>
-          <Text>Latte</Text>
-          {filterSearch2.map(renderItem)}
-        </View>
-        <View>
-          <Text>Mocha & Cappuccino</Text>
-          {filterSearch3.map(renderItem)}
-        </View>
-        <View>
-          <Text>Cà phê đá xay</Text>
-          {filterSearch4.map(renderItem)}
-        </View>
-        <View>
-          <Text>Trà sữa</Text>
-          {filterSearch5.map(renderItem)}
-        </View>
-        <View>
-          <Text>Các loại combo</Text>
-          {filterSearch6.map(renderItem)}
-        </View>
-        <View>
-          <Text>Cà phê</Text>
-          {filterSearch7.map(renderItem)}
-        </View>
-        <View>
-          <Text>Đá xay - Choco - Matcha</Text>
-          {filterSearch8.map(renderItem)}
-        </View>
-        <View>
-          <Text>Trà trái cây - Trà sữa</Text>
-          {filterSearch9.map(renderItem)}
-        </View>
-        <View>
-          <Text>Đồ ăn vặt</Text>
-          {filterSearch10.map(renderItem)}
-        </View>
-        <View>
-          <Text>Thưởng thức tại nhà</Text>
-          {filterSearch11.map(renderItem)}
-        </View>
-      </ScrollView> */}
-    </LinearGradient>
+      <ModalTimKiem
+        setVisible={setIsShowModalTimKiem}
+        visible={isShowModalTimKiem}
+        ds={ds}
+        setDs={setDs}
+        setSearch={setSearch}
+        renderItem={renderItem}
+      />
+    </View>
   );
 }

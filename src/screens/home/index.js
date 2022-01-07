@@ -27,7 +27,6 @@ function Header() {
     getUserData(user);
   }, []);
   var date = dayjs(new Date());
-  console.log(date);
   return (
     <View style={styles.styleHeader}>
       <Text>
