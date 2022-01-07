@@ -21,21 +21,33 @@ import {getAllStore} from '../API/Api';
 
 const AllStore = () => {
   const navigation = useNavigation();
-  // const [store, setStore] = useState()
+  const [searchAddress, setSearchAddress] = useState('');
   const [idStore, setIdStore] = useState();
-  // useEffect(() => {
-  //     const getApiStore = async () => {
-  //         const result = await getStore()
-  //         setStore(result.data)
-  //     }
-  //     getApiStore()
-  // }, [])
   const dispatch = useDispatch();
+  const [dsStore, setDsStore] = useState([])
   const productStore = useSelector(store => store.storeReducer.productsStore);
   useEffect(() => {
     dispatch(getProductStore());
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const searchData = (searchAddress, data) => {
+    let filterData = [];
+    for (var i = 0; i < productStore?.length; i++) {
+      searchAddress = searchAddress.toLowerCase();
+      var full_address = productStore[i].address.full_address.toLocaleLowerCase();
+      if (full_address.includes(searchAddress)) {
+        filterData.push(data[i]);
+      }
+    }
+    console.log(filterData);
+    return filterData;
+  };
+
+  useEffect(() => {
+    var storeAddress = searchData(searchAddress, productStore)
+    setDsStore(storeAddress)
+  },[searchAddress])
   const renderItem = ({item}) => (
     <View>
       <TouchableOpacity
@@ -84,7 +96,6 @@ const AllStore = () => {
       </TouchableOpacity>
     </View>
   );
-  const [Txt, onChangeText] = useState(null);
   return (
     <View>
       <View
@@ -122,8 +133,7 @@ const AllStore = () => {
               fontSize: 18,
               marginLeft: 10,
             }}
-            onChangeText={onChangeText}
-            value={Txt}
+            onChangeText={setSearchAddress}
             placeholder="Nhập tên đườn..."
           />
         </View>
@@ -170,7 +180,7 @@ const AllStore = () => {
             </Text>
           </View>
         )}
-        data={productStore}
+        data={dsStore}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={item => item.id?.toString()}

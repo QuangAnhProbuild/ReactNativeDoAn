@@ -21,6 +21,7 @@ import CookieChocolate from './product/cookie-chocolate';
 import CacLoaiTra from './product/cac-loai-tra';
 import DoUongKhac from './product/do-uong-khac';
 import ModalTimKiem from './modal-tim-kiem';
+import HeaderOrder from './header';
 
 export default function Order({navigation}) {
   const scrollRef = useRef();
@@ -191,12 +192,15 @@ export default function Order({navigation}) {
   return (
     <View>
       {/* <TextInput placeholder="Nhập gì đó" onChangeText={setSearch} /> */}
-      <TouchableOpacity onPress={() => setIsShowModalTimKiem(true)}>
-        <Ionicons name="heart" size={25} color="orange" />
-      </TouchableOpacity>
+      <HeaderOrder
+        setIsShowModalTimKiem={setIsShowModalTimKiem}
+        imagesButton={imagesButton}
+        setClick={setClick}
+        scrollRef={scrollRef}
+      />
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <View style={styles.ButtonContainer}>
-          <ScrollView horizontal={true}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {imagesButton.map(e => (
               <TouchableOpacity
                 key={e.key}

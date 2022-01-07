@@ -24,9 +24,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginTop: 0,
     width: Dimensions.get('window').width,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    height: 580,
+    height: 515,
   },
   ScrollTextContainer: {
     fontSize: 20,
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
   touchable: {
     width: Dimensions.get('window').width - 30,
     alignSelf: 'center',
-    alignItems:'center'
+    alignItems: 'center',
   },
   borderButton: {
     // backgroundColor: '#F2F5A9',
