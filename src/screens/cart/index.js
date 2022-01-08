@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-export default function Bag() {
+export default function Cart() {
   const dispatch = useDispatch();
   const listItem = useSelector(store => store.cartReducer.cart);
   const onChangeQuantity = (data, type) => () => {
@@ -16,14 +16,15 @@ export default function Bag() {
   const onRemoveAll = () => {
     dispatch({type: 'REMOVE_ALL'});
   };
-
+  console.log(listItem);
   return (
     <View style={{padding: 20}}>
       {!listItem?.length && <Text>Nothing</Text>}
       {listItem?.map(e => {
         return (
           <View key={e?._id} style={{flexDirection: 'row', marginTop: 20}}>
-            <Text>{e?.name}</Text>
+            <Image source={{uri: e?.image}} style={{height: 50, width: 50}} />
+            <Text>{e?.product_name}</Text>
             <View style={{flexDirection: 'row', marginLeft: 'auto'}}>
               <TouchableOpacity
                 onPress={onChangeQuantity(e, 'increase')}

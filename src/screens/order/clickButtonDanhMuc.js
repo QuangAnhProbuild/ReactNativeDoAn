@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import styles from './css';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function ModalDanhMuc({
   showModalDanhMuc,
   setShowModalDanhMuc,
@@ -37,6 +38,36 @@ export default function ModalDanhMuc({
           <View style={styles.ButtonContainer}>
             <View
               style={{
+                width: Dimensions.get('window').width,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  borderBottomWidth: 1,
+                  height: 40,
+                  marginRight: 40,
+                }}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    width: Dimensions.get('window').width - 60,
+                    textAlign: 'center',
+                  }}>
+                  Danh mục
+                </Text>
+                <TouchableOpacity onPress={() => setShowModalDanhMuc(false)}>
+                  <Ionicons
+                    name="ios-close"
+                    size={25}
+                    color="black"
+                    style={{marginRight: 40}}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View
+              style={{
                 flexDirection: 'row',
                 flexWrap: 'wrap',
                 height: 200,
@@ -50,7 +81,7 @@ export default function ModalDanhMuc({
                     justifyContent: 'space-around',
                     height: 60,
                     width: 60,
-                    backgroundColor: 'orange',
+                    backgroundColor: '#F3E2A9',
                     borderRadius: 50,
                   }}
                   onPress={() => {

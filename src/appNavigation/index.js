@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Bag from '../screens/Bag';
 import Wishlist from '../screens/Wishlist';
 
 import ProfileScreen from '../screens/Profile';

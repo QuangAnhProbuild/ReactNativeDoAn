@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './css';
 
 export default function ProductDetail({navigation, route}) {
   const {data} = route.params;
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState('Nho');
   const [giaTien, setGiaTien] = useState();
   const [iconHeart, setIconHeart] = useState('gray');
@@ -29,7 +31,17 @@ export default function ProductDetail({navigation, route}) {
     setChecked('Lon');
     setGiaTien(10000);
   };
-
+  const onAddCard = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      data: {
+        ...data,
+        quantity: 1,
+        price: giaTien ? data?.base_price + giaTien : data?.base_price,
+      },
+    });
+    // gui action toi reducer
+  };
   return (
     <View style={{backgroundColor: 'white'}}>
       <ScrollView style={{height: 640}}>
@@ -119,7 +131,7 @@ export default function ProductDetail({navigation, route}) {
           height: 80,
           justifyContent: 'center',
         }}>
-        <TouchableOpacity style={styles.styleButton}>
+        <TouchableOpacity style={styles.styleButton} onPress={onAddCard}>
           <Text style={styles.alignText}>
             {`${
               giaTien ? data?.base_price + giaTien : data?.base_price

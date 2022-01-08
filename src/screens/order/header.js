@@ -9,6 +9,7 @@ export default function HeaderOrder({
   imagesButton,
   setClick,
   scrollRef,
+  navigation,
 }) {
   const [showModalDanhMuc, setShowModalDanhMuc] = useState(false);
   return (
@@ -54,7 +55,7 @@ export default function HeaderOrder({
           <TouchableOpacity onPress={() => setIsShowModalTimKiem(true)}>
             <Ionicons name="search" size={25} color={'black'} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
             <Ionicons name="heart-outline" size={25} color={'black'} />
           </TouchableOpacity>
         </View>

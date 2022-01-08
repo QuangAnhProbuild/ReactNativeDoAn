@@ -18,6 +18,7 @@ import MuaSam from '../screens/spoint/navigationDoiUuDai/mua-sam';
 import TatCa from '../screens/spoint/navigationDoiUuDai/tat-ca';
 import TheCFHouse from '../screens/spoint/navigationDoiUuDai/thecf-house';
 import DoiUuDai from '../screens/spoint/doi-uu-dai';
+import Cart from '../screens/cart';
 
 export default function HomeStackScreen() {
   const HomeStack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ export default function HomeStackScreen() {
         <HomeStack.Screen name="goToHome" component={BottomTab} />
         <HomeStack.Screen name="LoginScreen" component={LoginScreen} />
         <HomeStack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <HomeStack.Screen name="Cart" component={Cart} />
         <HomeStack.Screen name="Places" component={Places} />
         <HomeStack.Screen name="Detail" component={ProductDetail} />
         <HomeStack.Screen name="newsDetail" component={NewsDetail} />

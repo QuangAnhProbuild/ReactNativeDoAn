@@ -28,7 +28,7 @@ export default function Order({navigation}) {
   const [order, setOrder] = useState([]);
   const [ds, setDs] = useState([]);
   const [isShowModalTimKiem, setIsShowModalTimKiem] = useState(false);
-  const [click, setClick] = useState('');
+  const [click, setClick] = useState();
   const getListProduct = async () => {
     try {
       const result = await getProduct();
@@ -169,8 +169,9 @@ export default function Order({navigation}) {
   const handleScroll = event => {
     setUseScroll(event.nativeEvent.contentOffset.x);
   };
+
   useEffect(() => {
-    setClick('');
+    setClick();
   }, [useScroll]);
 
   const searchData = (search, data) => {
@@ -197,6 +198,7 @@ export default function Order({navigation}) {
         imagesButton={imagesButton}
         setClick={setClick}
         scrollRef={scrollRef}
+        navigation={navigation}
       />
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <View style={styles.ButtonContainer}>
@@ -210,7 +212,7 @@ export default function Order({navigation}) {
                     backgroundColor:
                       click === e.click ||
                       useScroll.toFixed() === e.screenWidth.toFixed()
-                        ? '#F7D358'
+                        ? '#F3E2A9'
                         : 'white',
                   },
                 ]}

@@ -26,6 +26,13 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 515,
   },
+  ScrollContainer1: {
+    backgroundColor: '#cdf1ec',
+    flexGrow: 1,
+    marginTop: 0,
+    width: Dimensions.get('window').width,
+    height: 615,
+  },
   ScrollTextContainer: {
     fontSize: 20,
     padding: 15,
