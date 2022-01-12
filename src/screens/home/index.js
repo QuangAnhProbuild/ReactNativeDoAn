@@ -15,7 +15,7 @@ import CoffeeLove from './kham-pha-them/coffee-love';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './css';
 import SlideShow from './slide';
-function Header() {
+function Header({navigation}) {
   const [user, setuser] = useState(null);
   const getUserData = async () => {
     let curUser = await AsyncStorage.getItem('curUser');
@@ -65,7 +65,7 @@ function Header() {
             alignSelf: 'center',
             marginTop: 3,
           }}
-          source={require('../../assets/images/iconUuDai.png')}
+          source={require('../../assets/images/iconUuDai.jpg')}
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.button1}>
@@ -116,16 +116,19 @@ export default function TrangChuPage({navigation}) {
       style={{
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#F2F2F2',
       }}>
+      <TouchableOpacity onPress={() => navigation.navigate('ScanScreen')}>
+        <Text>Quét mã QR</Text>
+      </TouchableOpacity>
       <Animated.View
         style={{
           transform: [{translateY: translateY}],
           elevation: 4,
           zIndex: 100,
         }}>
-        <Header />
-        <SlideShow />
+        <Header navigation={navigation} />
+        <SlideShow navigation={navigation} />
         <View style={styles.header}>
           <Text
             style={{

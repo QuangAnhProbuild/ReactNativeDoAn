@@ -17,7 +17,7 @@ function Header({setChangeScreen, changeScreen}) {
                 alignSelf: 'center',
                 marginTop: 3,
               }}
-              source={require('../../assets/images/iconUuDai.png')}
+              source={require('../../assets/images/iconUuDai.jpg')}
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button1}>

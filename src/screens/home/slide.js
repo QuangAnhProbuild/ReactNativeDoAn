@@ -2,12 +2,14 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from './css';
-export default function SlideShow() {
+export default function SlideShow({navigation}) {
   return (
     <View>
       <View style={styles.flexButton}>
         <View>
-          <TouchableOpacity style={{marginTop: 5, width: 150}}>
+          <TouchableOpacity
+            style={{marginTop: 5, width: 150}}
+            onPress={() => navigation.navigate('Order')}>
             <View style={styles.borderButton}>
               <Image
                 style={{
@@ -25,7 +27,9 @@ export default function SlideShow() {
         </View>
         <View style={styles.border} />
         <View>
-          <TouchableOpacity style={{marginTop: 5, width: 150}}>
+          <TouchableOpacity
+            style={{marginTop: 5, width: 150}}
+            onPress={() => navigation.navigate('Order')}>
             <View style={styles.borderButton}>
               <Image
                 style={{

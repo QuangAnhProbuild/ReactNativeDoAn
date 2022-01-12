@@ -40,6 +40,7 @@ export default function ProductDetail({navigation, route}) {
         price: giaTien ? data?.base_price + giaTien : data?.base_price,
       },
     });
+    navigation.goBack();
     // gui action toi reducer
   };
   return (

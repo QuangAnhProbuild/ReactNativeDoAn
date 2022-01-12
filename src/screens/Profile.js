@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, StatusBar, Image, TouchableOpacity} from 'react-native';
 import MainButton from '../components/mainButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {getList} from '../service/order.api';
 export default function ProfileScreen({navigation}) {
   const [user, setuser] = useState(null);
   const getUserData = async () => {
@@ -21,6 +22,7 @@ export default function ProfileScreen({navigation}) {
   useEffect(() => {
     getUserData(user);
   }, [user]);
+
   return (
     <View
       style={{

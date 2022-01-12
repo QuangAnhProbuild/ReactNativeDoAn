@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import {dataKhamPha} from './data';
 export default function UuDaiDacBiet({scrollY, navigation}) {
@@ -14,7 +15,9 @@ export default function UuDaiDacBiet({scrollY, navigation}) {
     navigation.navigate('newsDetail', {data: item});
 
   const renderItem = ({item}) => (
-    <TouchableOpacity style={{width: 170}} onPress={moveToDetail(item)}>
+    <TouchableOpacity
+      style={{width: Dimensions.get('window').width / 2 - 10}}
+      onPress={moveToDetail(item)}>
       <Image source={{uri: item.thumbnail}} style={styles.imgStyle} />
       <View style={styles.rowPrice}>
         <Text style={{width: 170}}>{item.title}</Text>
@@ -25,7 +28,7 @@ export default function UuDaiDacBiet({scrollY, navigation}) {
   // const dataLe = data.filter((e, index) => index % 2 !== 0);
 
   return (
-    <View style={{width: 335}}>
+    <View style={{width: Dimensions.get('window').width - 15}}>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -49,10 +52,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   imgStyle: {
-    height: 160,
-    width: 160,
+    height: 170,
+    width: Dimensions.get('window').width / 2 - 15,
     borderRadius: 8,
     marginTop: 10,
-    marginLeft: 5,
   },
 });

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import {getNewsfeed} from '../../../service/Api';
 import {dataKhamPha} from './data';
@@ -28,7 +29,7 @@ export default function CapNhatTuNha({scrollY}) {
   const data = dataKhamPha.news?.[1].posts;
   console.log(data);
   const renderItem = ({item}) => (
-    <TouchableOpacity style={{width: 170}}>
+    <TouchableOpacity style={{width: Dimensions.get('window').width / 2 - 10}}>
       <Image source={{uri: item.thumbnail}} style={styles.imgStyle} />
       <View style={styles.rowPrice}>
         <Text style={{width: 170}}>{item.title}</Text>
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
   },
   imgStyle: {
     marginLeft: 5,
-    height: 160,
-    width: 160,
+    height: 170,
+    width: Dimensions.get('window').width / 2 - 15,
     borderRadius: 8,
     marginTop: 10,
   },

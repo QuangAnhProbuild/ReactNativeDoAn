@@ -17,25 +17,25 @@ import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductStore} from '../../reducers/storeReducer';
-import {getAllStore} from '../API/Api';
 
 const AllStore = () => {
   const navigation = useNavigation();
   const [searchAddress, setSearchAddress] = useState('');
   const [idStore, setIdStore] = useState();
   const dispatch = useDispatch();
-  const [dsStore, setDsStore] = useState([])
   const productStore = useSelector(store => store.storeReducer.productsStore);
   useEffect(() => {
     dispatch(getProductStore());
   }, []);
+  const [dsStore, setDsStore] = useState(productStore);
   const [modalVisible, setModalVisible] = useState(false);
 
   const searchData = (searchAddress, data) => {
     let filterData = [];
     for (var i = 0; i < productStore?.length; i++) {
       searchAddress = searchAddress.toLowerCase();
-      var full_address = productStore[i].address.full_address.toLocaleLowerCase();
+      var full_address =
+        productStore[i].address.full_address.toLocaleLowerCase();
       if (full_address.includes(searchAddress)) {
         filterData.push(data[i]);
       }
@@ -45,9 +45,9 @@ const AllStore = () => {
   };
 
   useEffect(() => {
-    var storeAddress = searchData(searchAddress, productStore)
-    setDsStore(storeAddress)
-  },[searchAddress])
+    var storeAddress = searchData(searchAddress, productStore);
+    setDsStore(storeAddress);
+  }, [searchAddress]);
   const renderItem = ({item}) => (
     <View>
       <TouchableOpacity
@@ -98,62 +98,111 @@ const AllStore = () => {
   );
   return (
     <View>
-      <View
-        style={{
-          backgroundColor: 'white',
-          flexDirection: 'row',
-          alignItems: 'center',
-          height: 70,
-          borderBottomWidth: 0.2,
-          borderBottomColor: 'silver',
-          marginTop: -10,
-        }}>
+      <View>
         <View
           style={{
-            width: '70%',
-            height: 45,
+            flexDirection: 'row',
+            height: 50,
+            backgroundColor: 'white',
+            alignItems: 'center',
+            marginBottom: 10,
+            justifyContent: 'space-between',
+          }}>
+          <Text style={{fontSize: 20, fontWeight: 'bold', marginLeft: 10}}>
+            Cửa hàng
+          </Text>
+          <View style={{flexDirection: 'row', width: 120}}>
+            <TouchableOpacity
+              style={{
+                elevation: 10,
+                width: 60,
+                height: 30,
+                backgroundColor: 'white',
+                borderRadius: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                source={require('../../assets/images/iconUuDai.png')}
+                style={{height: 20, width: 30}}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                elevation: 10,
+                width: 30,
+                height: 30,
+                backgroundColor: 'white',
+                borderRadius: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginLeft: 10,
+              }}>
+              <MaterialCommunityIcons
+                name="bell-outline"
+                color="black"
+                size={25}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={{
+            backgroundColor: 'white',
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: 'silver',
-            borderRadius: 10,
-            marginLeft: 10,
-            borderBottomWidth: 0.3,
-            borderBottomColor: 'grey',
+            height: 70,
+            borderBottomWidth: 0.2,
+            borderBottomColor: 'silver',
+            marginTop: -10,
           }}>
-          <AntDesign
-            name={'search1'}
-            size={20}
-            color={'grey'}
-            style={{marginLeft: 20}}
-          />
-          <TextInput
+          <View
             style={{
               width: '70%',
+              height: 45,
+              flexDirection: 'row',
+              alignItems: 'center',
               backgroundColor: 'silver',
-              fontSize: 18,
+              borderRadius: 10,
               marginLeft: 10,
-            }}
-            onChangeText={setSearchAddress}
-            placeholder="Nhập tên đườn..."
-          />
-        </View>
-        <TouchableOpacity
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-          }}
-          onPress={() => navigation.navigate('Places')}>
-          <Image
-            source={require('../../assets/images/map.png')}
+              borderBottomWidth: 0.3,
+              borderBottomColor: 'grey',
+            }}>
+            <AntDesign
+              name={'search1'}
+              size={20}
+              color={'grey'}
+              style={{marginLeft: 20}}
+            />
+            <TextInput
+              style={{
+                width: '70%',
+                backgroundColor: 'silver',
+                fontSize: 18,
+                marginLeft: 10,
+              }}
+              onChangeText={setSearchAddress}
+              placeholder="Nhập tên đườn..."
+            />
+          </View>
+          <TouchableOpacity
             style={{
-              width: 30,
-              height: 30,
-              marginLeft: 8,
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
             }}
-          />
-          <Text style={{fontWeight: 'bold', marginRight: 8}}>BẢN ĐỒ</Text>
-        </TouchableOpacity>
+            onPress={() => navigation.navigate('Places')}>
+            <Image
+              source={require('../../assets/images/map.png')}
+              style={{
+                width: 30,
+                height: 30,
+                marginLeft: 8,
+              }}
+            />
+            <Text style={{fontWeight: 'bold', marginRight: 8}}>BẢN ĐỒ</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <FlatList
         ListHeaderComponent={() => (

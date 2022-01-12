@@ -45,6 +45,13 @@ export default function itemReducer(state = initialState, action) {
         };
       }
 
+    case 'REMOVE_ITEM':
+      console.log(action);
+      return {
+        ...state,
+        cart: state.cart.filter(e => e._id !== action.data._id),
+      };
+
     case 'INCREASE_QUANTITY':
       const isIndExistedIncreaseQuantity = state.cart?.findIndex(
         e => e?._id === action.data?._id,

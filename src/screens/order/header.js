@@ -56,7 +56,7 @@ export default function HeaderOrder({
             <Ionicons name="search" size={25} color={'black'} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Ionicons name="heart-outline" size={25} color={'black'} />
+            <Ionicons name="cart-outline" size={25} color={'black'} />
           </TouchableOpacity>
         </View>
       </View>

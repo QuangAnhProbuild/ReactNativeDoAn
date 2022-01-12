@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://api.thecoffeehouse.com/api',
+  baseURL: 'http://192.168.1.94:3000',
   timeout: 1000,
 });
 // https://api.thecoffeehouse.com/api/v5/stores/all-pickup
-export const login = params => instance.post('verify_mobile', params);
+export const getList = params => instance.get('/voucher', params);
