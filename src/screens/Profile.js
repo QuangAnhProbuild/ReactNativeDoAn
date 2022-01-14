@@ -40,7 +40,7 @@ export default function ProfileScreen({navigation}) {
             borderRadius: 100,
           }}
           source={{
-            uri: 'https://scontent.fhan2-2.fna.fbcdn.net/v/t39.30808-6/269804499_3197696757125672_5339279476620175549_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=af2BroKJ6HIAX9TOCdA&_nc_ht=scontent.fhan2-2.fna&oh=00_AT-PP4iUUgFkW-4X6pQhlVZsfY-RxiobSzI5q-yJSpsAug&oe=61D70ED9',
+            uri: 'https://play-lh.googleusercontent.com/LP5zrOXygcRYZi_bwD5A0460d94Ib9EyZ5SXldpnZv7pvKwbbFZrPz3exggDR2XAxYI',
           }}
         />
         <Text
@@ -68,6 +68,7 @@ export default function ProfileScreen({navigation}) {
           Tiện ích
         </Text>
         <TouchableOpacity
+          onPress={() => navigation.navigate('LichSuDonHang')}
           style={{
             backgroundColor: 'white',
             borderRadius: 10,
@@ -93,7 +94,7 @@ export default function ProfileScreen({navigation}) {
           }}>
           <TouchableOpacity
             style={{
-              width: 180,
+              width: 160,
               backgroundColor: 'white',
               borderRadius: 10,
               height: 80,
@@ -111,7 +112,7 @@ export default function ProfileScreen({navigation}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              width: 180,
+              width: 160,
               backgroundColor: 'white',
               borderRadius: 10,
               height: 80,

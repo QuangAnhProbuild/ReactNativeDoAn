@@ -4,7 +4,7 @@ import Card from '../../components/card';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './css';
 import {getList} from '../../service/order.api';
-export default function TichDiem() {
+export default function TichDiem({setChangeScreen, navigation}) {
   const [dsVoucher, setDsVoucher] = useState();
   const dsList = async () => {
     try {
@@ -21,50 +21,54 @@ export default function TichDiem() {
     <View style={{marginLeft: 10, marginRight: 10}}>
       <Card />
       <View style={styles.viewStyle}>
-        <TouchableOpacity style={styles.touchStyle}>
+        <TouchableOpacity
+          style={styles.touchStyle}
+          onPress={() => setChangeScreen('DoiUuDai')}>
           <MaterialCommunityIcons
-            name="music-box-outline"
+            name="crop-landscape"
             size={30}
-            color="green"
+            color="orange"
             style={{marginLeft: 15}}
           />
           <Text style={{marginLeft: 15, fontWeight: '500', fontSize: 16}}>
-            Nhạc đang phát
+            Đổi ưu đãi
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.touchDieuKhoan}>
           <MaterialCommunityIcons
-            name="file-edit-outline"
+            name="ticket-confirmation-outline"
             size={30}
-            color="purple"
+            color="orange"
             style={{marginLeft: 15}}
           />
           <Text style={{marginLeft: 15, fontWeight: '500', fontSize: 16}}>
-            Điều khoản sử dụng
+            Phiếu ưu đãi của bạn
           </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.viewStyle}>
-        <TouchableOpacity style={styles.touchStyle}>
+        <TouchableOpacity
+          style={styles.touchStyle}
+          onPress={() => navigation.navigate('LichSuDonHang')}>
           <MaterialCommunityIcons
-            name="music-box-outline"
+            name="equal"
             size={30}
-            color="green"
+            color="orange"
             style={{marginLeft: 15}}
           />
           <Text style={{marginLeft: 15, fontWeight: '500', fontSize: 16}}>
-            Nhạc đang phát
+            Lịch sử giao dịch
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.touchDieuKhoan}>
           <MaterialCommunityIcons
-            name="file-edit-outline"
+            name="account-box-outline"
             size={30}
             color="purple"
             style={{marginLeft: 15}}
           />
           <Text style={{marginLeft: 15, fontWeight: '500', fontSize: 16}}>
-            Điều khoản sử dụng
+            Quyền lợi của bạn
           </Text>
         </TouchableOpacity>
       </View>

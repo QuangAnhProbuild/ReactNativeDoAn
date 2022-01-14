@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,7 @@ export default function ModalVoucher({
   setShowModalVoucher,
   setVoucher,
 }) {
-  console.log(clickVoucher);
-  const [clickVoucher, setClickVoucher] = useState()
+  const [clickVoucher, setClickVoucher] = useState();
   return (
     <Modal visible={showModalVoucher} transparent>
       <View
@@ -32,8 +31,10 @@ export default function ModalVoucher({
             backgroundColor: 'white',
             borderRadius: 10,
           }}>
-          <View style={{justifyContent:'center',alignSelf:'center'}}>
-            <Text style={{height: 30, fontSize: 20, fontWeight: 'bold'}}>Mã giảm giá</Text>
+          <View style={{justifyContent: 'center', alignSelf: 'center'}}>
+            <Text style={{height: 30, fontSize: 20, fontWeight: 'bold'}}>
+              Mã giảm giá
+            </Text>
           </View>
           <ScrollView>
             {dataVoucher.map(e => (
@@ -42,7 +43,23 @@ export default function ModalVoucher({
                   setClickVoucher(e.id);
                 }}
                 key={e.id}
-                style={clickVoucher === e.id ? {backgroundColor: '#F7BE81',marginTop: 10, flexDirection: 'row',marginLeft: 10, marginRight: 10} : {backgroundColor: 'white', marginTop: 10, flexDirection: 'row',marginLeft: 10, marginRight: 10}}>
+                style={
+                  clickVoucher === e.id
+                    ? {
+                        backgroundColor: '#F7BE81',
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        marginLeft: 10,
+                        marginRight: 10,
+                      }
+                    : {
+                        backgroundColor: 'white',
+                        marginTop: 10,
+                        flexDirection: 'row',
+                        marginLeft: 10,
+                        marginRight: 10,
+                      }
+                }>
                 <Image
                   source={{uri: e?.imgUrl}}
                   style={{height: 60, width: 60}}
@@ -54,11 +71,23 @@ export default function ModalVoucher({
               </TouchableOpacity>
             ))}
           </ScrollView>
-          <View style={{height: 40,justifyContent:'center'}}>
-
-          <TouchableOpacity onPress={() => {setShowModalVoucher(false), setVoucher(dataVoucher.find((e) => e.id === clickVoucher))}} style={{width: 100, height: 30, backgroundColor: 'orange',borderRadius: 15, justifyContent:'center',alignItems:'center',alignSelf:'center'}}>
-            <Text>Áp dụng</Text>
-          </TouchableOpacity>
+          <View style={{height: 40, justifyContent: 'center'}}>
+            <TouchableOpacity
+              onPress={() => {
+                setShowModalVoucher(false),
+                  setVoucher(dataVoucher.find(e => e.id === clickVoucher));
+              }}
+              style={{
+                width: 100,
+                height: 30,
+                backgroundColor: 'orange',
+                borderRadius: 15,
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text>Áp dụng</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

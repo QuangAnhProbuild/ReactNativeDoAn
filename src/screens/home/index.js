@@ -68,16 +68,18 @@ function Header({navigation}) {
           source={require('../../assets/images/iconUuDai.jpg')}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button1}>
-        <Image
-          style={{
-            height: 30,
-            width: 30,
-            alignSelf: 'center',
-            marginTop: 3,
-          }}
-          source={require('../../assets/images/iconChuong.png')}
-        />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ScanScreen')}
+        style={{
+          backgroundColor: 'white',
+          width: 60,
+          height: 40,
+          borderRadius: 20,
+          marginLeft: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Ionicons name="qr-code-outline" color={'black'} size={25} />
       </TouchableOpacity>
     </View>
   );
@@ -88,10 +90,10 @@ export default function TrangChuPage({navigation}) {
   const diffClamp = Animated.diffClamp(
     scrollY,
     0,
-    screen == 'CoffeeLove' ? 380 : 1520,
+    screen == 'CoffeeLove' ? 380 : 3080,
   );
   const translateY = diffClamp.interpolate({
-    inputRange: [0, screen == 'CoffeeLove' ? 380 : 4],
+    inputRange: [0, screen == 'CoffeeLove' ? 380 : 8],
     outputRange: [0, screen == 'CoffeeLove' ? -380 : -1],
   });
   console.log(screen);
@@ -118,9 +120,6 @@ export default function TrangChuPage({navigation}) {
         marginRight: 10,
         backgroundColor: '#F2F2F2',
       }}>
-      <TouchableOpacity onPress={() => navigation.navigate('ScanScreen')}>
-        <Text>Quét mã QR</Text>
-      </TouchableOpacity>
       <Animated.View
         style={{
           transform: [{translateY: translateY}],

@@ -109,57 +109,57 @@ export default function Order({navigation}) {
   const imagesButton = [
     {
       key: 1,
-      image: require('../../assets/images/capheda.png'),
+      image: require('../../assets/images/latte.png'),
       data: filterSearch1,
-      text: 'Latte Mocha',
+      text: 'Latte',
       screenWidth: 0,
       click: 'LatteMocha',
     },
     {
       key: 2,
-      image: require('../../assets/images/traTraiCay.png'),
+      image: require('../../assets/images/bubble-tea.png'),
       data: filterSearch3?.concat(filterSearch2),
-      text: 'Tra Sua',
+      text: 'Trà sữa',
       screenWidth: screenWidth,
       click: 'TraSua',
     },
     {
       key: 3,
-      image: require('../../assets/images/Juice.png'),
+      image: require('../../assets/images/combo.png'),
       data: filterSearch6,
-      text: 'Combo Do An Vat',
+      text: 'Combo',
       screenWidth: screenWidth * 2,
       click: 'ComboDoAnVat',
     },
     {
       key: 4,
-      image: require('../../assets/images/iconCafe.png'),
+      image: require('../../assets/images/capheda.png'),
       data: filterSearch4,
-      text: 'Chai Cà phê',
+      text: 'Cà phê',
       screenWidth: screenWidth * 3,
       click: 'ChaiCaPhe',
     },
     {
       key: 5,
-      image: require('../../assets/images/caphedaxay.jpg'),
+      image: require('../../assets/images/matcha.png'),
       data: filterSearch5,
-      text: 'Cookie Chocolate',
+      text: 'Cookie',
       screenWidth: screenWidth * 4,
       click: 'CookieChocolate',
     },
     {
       key: 6,
-      image: require('../../assets/images/iconGiaoHang.png'),
+      image: require('../../assets/images/tea.png'),
       data: filterSearch6,
-      text: 'Cac loai tra',
+      text: 'Trà hoa quả',
       screenWidth: screenWidth * 5,
       click: 'CacLoaiTra',
     },
     {
       key: 7,
-      image: require('../../assets/images/card.jpg'),
+      image: require('../../assets/images/coffee-bag.png'),
       data: filterSearch7,
-      text: 'Do uong khac',
+      text: 'Hộp cafe',
       screenWidth: screenWidth * 6,
       click: 'DoUongKhac',
     },
@@ -203,38 +203,46 @@ export default function Order({navigation}) {
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <View style={styles.ButtonContainer}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {imagesButton.map(e => (
-              <TouchableOpacity
-                key={e.key}
-                style={[
-                  styles.borderButton,
-                  {
-                    backgroundColor:
-                      click === e.click ||
-                      useScroll.toFixed() === e.screenWidth.toFixed()
-                        ? '#F3E2A9'
-                        : 'white',
-                  },
-                ]}
-                onPress={() => {
-                  scrollRef.current?.scrollTo({
-                    x: e.screenWidth,
-                    y: 0,
-                    animated: true,
-                  });
-                  setClick(e.click);
+            {imagesButton.map((e, i) => (
+              <View
+                key={i}
+                style={{
+                  marginLeft: 5,
                 }}>
-                <Image
-                  style={{
-                    height: 40,
-                    marginTop: 10,
-                    width: 28,
-                    alignSelf: 'center',
-                    justifyContent: 'center',
-                  }}
-                  source={e.image}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  key={e.key}
+                  style={[
+                    styles.borderButton,
+                    {
+                      backgroundColor:
+                        click === e.click ||
+                        useScroll.toFixed() === e.screenWidth.toFixed()
+                          ? '#F3E2A9'
+                          : 'white',
+                    },
+                  ]}
+                  onPress={() => {
+                    scrollRef.current?.scrollTo({
+                      x: e.screenWidth,
+                      y: 0,
+                      animated: true,
+                    });
+                    setClick(e.click);
+                  }}>
+                  <Image
+                    style={{
+                      height: 40,
+                      marginTop: 10,
+                      width: 40,
+                      alignSelf: 'center',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    source={e.image}
+                  />
+                </TouchableOpacity>
+                <Text style={{textAlign: 'center'}}>{e?.text}</Text>
+              </View>
             ))}
           </ScrollView>
         </View>

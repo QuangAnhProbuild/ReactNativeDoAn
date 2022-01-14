@@ -1,19 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  Modal,
-  ScrollView,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductStore} from '../../reducers/storeReducer';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
@@ -43,29 +32,14 @@ export default function Places() {
             height: 45,
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: 'silver',
             borderRadius: 10,
             marginLeft: 10,
             borderBottomWidth: 0.3,
             borderBottomColor: 'grey',
           }}>
-          <AntDesign
-            name={'search1'}
-            size={20}
-            color={'grey'}
-            style={{marginLeft: 20}}
-          />
-          <TextInput
-            style={{
-              width: '70%',
-              backgroundColor: 'silver',
-              fontSize: 18,
-              marginLeft: 10,
-            }}
-            onChangeText={onChangeText}
-            value={Txt}
-            placeholder="Nhập tên đườn..."
-          />
+          <Text style={{marginLeft: 20, fontSize: 20, fontWeight: 'bold'}}>
+            Vị trí cửa hàng
+          </Text>
         </View>
         <TouchableOpacity
           style={{
@@ -86,11 +60,10 @@ export default function Places() {
           latitudeDelta: 0.02922,
           longitudeDelta: 0.02421,
         }}>
-        {productStore.map((e, id) => (
+        {productStore.map(e => (
           <Marker
-            key={id}
-            title={e.title}
-            key={e.title}
+            key={e.id}
+            title={e.name}
             coordinate={{latitude: e.latitude, longitude: e.longitude}}>
             <TouchableOpacity>
               <Image

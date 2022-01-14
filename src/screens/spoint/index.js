@@ -104,7 +104,7 @@ export default function Spoint({navigation}) {
       <Header setChangeScreen={setChangeScreen} changeScreen={changeScreen} />
       <ScrollView>
         {changeScreen === 'TichDiem' ? (
-          <TichDiem />
+          <TichDiem setChangeScreen={setChangeScreen} navigation={navigation} />
         ) : (
           <DoiUuDai navigation={navigation} />
         )}

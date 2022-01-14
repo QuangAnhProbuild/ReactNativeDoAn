@@ -80,6 +80,7 @@ export default function ModalDanhMuc({
                     marginLeft: 20,
                     justifyContent: 'space-around',
                     height: 60,
+                    marginTop: 15,
                     width: 60,
                     backgroundColor: '#F3E2A9',
                     borderRadius: 50,
@@ -95,11 +96,9 @@ export default function ModalDanhMuc({
                   }}>
                   <Image
                     style={{
-                      height: 50,
-                      marginTop: 10,
-                      width: 50,
+                      height: 40,
+                      width: 40,
                       alignSelf: 'center',
-                      justifyContent: 'center',
                     }}
                     source={e.image}
                   />

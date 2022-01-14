@@ -21,7 +21,7 @@ export default function Card() {
           borderRadius: 10,
         }}>
         <ImageBackground
-          source={require('../assets/images/backGroundImage.png')}
+          source={require('../assets/images/backGroundImagee.png')}
           style={{
             width: Dimensions.get('window').width - 20,
             height: 210,

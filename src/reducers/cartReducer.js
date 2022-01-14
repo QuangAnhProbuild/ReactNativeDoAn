@@ -25,12 +25,13 @@ export default function itemReducer(state = initialState, action) {
       };
 
     case 'ADD_TO_CART':
-      console.log('action', action); // => { type: "ADD_TO_CART", data: data }
+      console.log('action', action.data); // => { type: "ADD_TO_CART", data: data }
       // kiem tra sp da co trong gio hang hay chua
       const isIndExisted = state.cart?.findIndex(
         e => e?._id === action.data?._id,
       ); // nếu có sp thì trả ra index của phần tử đó, còn không thì trả ra -1
       if (isIndExisted !== -1) {
+        console.log(state.cart[isIndExisted]);
         state.cart[isIndExisted].quantity =
           state.cart[isIndExisted].quantity + 1;
         console.log('state.cart', state.cart);

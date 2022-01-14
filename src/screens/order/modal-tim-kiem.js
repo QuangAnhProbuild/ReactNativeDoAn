@@ -28,6 +28,7 @@ export default function ModalTimKiem({
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
+            marginTop: 15,
           }}>
           <TextInput
             placeholder="Tìm kiếm..."
@@ -35,11 +36,12 @@ export default function ModalTimKiem({
               backgroundColor: '#E5E5E5',
               width: Dimensions.get('window').width - 90,
               borderRadius: 10,
+              marginLeft: 20,
             }}
             onChangeText={setSearch}
           />
           <TouchableOpacity
-            style={{width: 80}}
+            style={{width: 80, marginLeft: 10}}
             onPress={() => setVisible(false)}>
             <Text style={{fontSize: 18, fontWeight: 'bold', color: 'orange'}}>
               Đóng

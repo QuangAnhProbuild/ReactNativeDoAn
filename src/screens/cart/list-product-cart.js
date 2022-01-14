@@ -13,7 +13,6 @@ export default function ListProductCart({listItem}) {
       data?.quantity > 0 && dispatch({type: 'REDUCE_QUANTITY', data});
     }
   };
-
   const onRemoveAll = () => {
     dispatch({type: 'REMOVE_ALL'});
   };
@@ -38,7 +37,6 @@ export default function ListProductCart({listItem}) {
                 height: 80,
                 alignItems: 'center',
                 marginLeft: 10,
-                marginRight: 10
               }}>
               <View
                 style={{
@@ -58,7 +56,12 @@ export default function ListProductCart({listItem}) {
                 source={{uri: item?.image}}
                 style={{height: 50, width: 50}}
               />
-              <Text style={{width: 180}}>{item?.product_name}</Text>
+              <View>
+                <Text style={{width: 180}}>{item?.product_name}</Text>
+                <Text>
+                  {`${item?.price}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}đ
+                </Text>
+              </View>
               <View style={{flexDirection: 'row', marginLeft: 'auto'}}>
                 <TouchableOpacity
                   onPress={onChangeQuantity(item, 'increase')}
@@ -90,7 +93,14 @@ export default function ListProductCart({listItem}) {
           );
         }}
         renderHiddenItem={({item}) => (
-          <View style={{height: 80, alignItems: 'flex-end', marginTop: 10, marginLeft: 10, marginRight: 10}}>
+          <View
+            style={{
+              height: 80,
+              alignItems: 'flex-end',
+              marginTop: 10,
+              marginLeft: 10,
+              marginRight: 10,
+            }}>
             <TouchableOpacity
               onPress={onRemoveItem(item)}
               style={{

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
@@ -11,13 +11,14 @@ const styles = StyleSheet.create({
   styleHeader: {
     paddingTop: 10,
     flexDirection: 'row',
+    width: Dimensions.get('window').width,
   },
   button: {
     backgroundColor: 'white',
     width: 60,
     height: 40,
     borderRadius: 20,
-    marginLeft: 40,
+    marginLeft: 20,
   },
   button1: {
     backgroundColor: 'white',

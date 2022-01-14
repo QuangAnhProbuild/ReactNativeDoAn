@@ -22,6 +22,8 @@ import Order from '../screens/order/index';
 import Cart from '../screens/cart';
 import ScanScreen from '../screens/home/scan';
 import Spoint from '../screens/spoint';
+import LichSuDonHang from '../screens/history';
+import ThongTinDonHang from '../screens/history/thong-tin-don-hang';
 
 export default function HomeStackScreen() {
   const HomeStack = createNativeStackNavigator();
@@ -49,6 +51,7 @@ export default function HomeStackScreen() {
         <HomeStack.Screen name="TheCfHouse" component={TheCFHouse} />
         <HomeStack.Screen name="Order" component={Order} />
         <HomeStack.Screen name="ScanScreen" component={ScanScreen} />
+        <HomeStack.Screen name="LichSuDonHang" component={LichSuDonHang} />
       </HomeStack.Navigator>
     </NavigationContainer>
   );

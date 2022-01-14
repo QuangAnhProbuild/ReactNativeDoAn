@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ScrollContainer: {
-    backgroundColor: '#cdf1ec',
+    backgroundColor: '#EFFBF5',
     flexGrow: 1,
     marginTop: 0,
     width: Dimensions.get('window').width,
-    height: 515,
+    height: 475,
   },
   ScrollContainer1: {
-    backgroundColor: '#cdf1ec',
+    backgroundColor: 'white',
     flexGrow: 1,
     marginTop: 0,
     width: Dimensions.get('window').width,
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#F2F5A9',
     width: 60,
     height: 60,
-    marginLeft: 5,
+    marginRight: 15,
+    marginLeft: 10,
     borderRadius: 50,
   },
 });

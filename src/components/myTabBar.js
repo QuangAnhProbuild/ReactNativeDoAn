@@ -4,9 +4,9 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 export default function MyTabBar({state, descriptors, navigation}) {
   var imgArr = [
     {img: require('../assets/images/Home.png'), text: 'Trang chủ'},
-    {img: require('../assets/images/search.png'), text: 'Đặt hàng'},
-    {img: require('../assets/images/Basket.png'), text: 'Cửa hàng'},
-    {img: require('../assets/images/card.jpg'), text: 'Tích điểm'},
+    {img: require('../assets/images/Basket.png'), text: 'Đặt hàng'},
+    {img: require('../assets/images/shop.png'), text: 'Cửa hàng'},
+    {img: require('../assets/images/credit-card.png'), text: 'Tích điểm'},
     {img: require('../assets/images/profile.png'), text: 'Khác'},
   ];
   return (
