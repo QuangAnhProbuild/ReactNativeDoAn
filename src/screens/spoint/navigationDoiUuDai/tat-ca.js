@@ -31,7 +31,7 @@ export default function TatCa({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Tất cả</Text>
       </ScrollView>
     </View>
   );

@@ -31,7 +31,7 @@ export default function MuaSam({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Mua sắm</Text>
       </ScrollView>
     </View>
   );

@@ -37,7 +37,16 @@ export default function ThongTinDonHang({visible, setVisible, ttDonHang}) {
         Đặt hàng ngày: {dayjs(ttDonHang?.[2]).format('DD-MM-YYYY hh:mm:ss')}
       </Text>
       <View style={{height: 5, backgroundColor: '#E5E5E5'}} />
-
+      <Text
+        style={{
+          height: 40,
+          textAlignVertical: 'center',
+          marginLeft: 10,
+          marginRight: 10,
+        }}>
+        Tổng giá tiền đơn hàng: {ttDonHang?.[1]}
+      </Text>
+      <View style={{height: 5, backgroundColor: '#E5E5E5'}} />
       {ttDonHang?.[0].map((e, i) => (
         <View
           key={i}
@@ -81,7 +90,7 @@ export default function ThongTinDonHang({visible, setVisible, ttDonHang}) {
             alignItems: 'center',
             borderRadius: 10,
           }}>
-          <Text>ĐÓNGGGGGGG</Text>
+          <Text>Đóng</Text>
         </TouchableOpacity>
       </View>
     </Modal>

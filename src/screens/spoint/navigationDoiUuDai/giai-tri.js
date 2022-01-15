@@ -31,7 +31,7 @@ export default function GiaiTri({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Giải trí</Text>
       </ScrollView>
     </View>
   );
