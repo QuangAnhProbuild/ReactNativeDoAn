@@ -84,6 +84,7 @@ export default function Cart({navigation}) {
     navigation.goBack();
     // gui action toi reducer
   };
+
   const arrTongTien = listItem?.map(e => ({
     ...e,
     sumPrice: e?.quantity * e?.price,
