@@ -22,10 +22,12 @@ import CacLoaiTra from './product/cac-loai-tra';
 import DoUongKhac from './product/do-uong-khac';
 import ModalTimKiem from './modal-tim-kiem';
 import HeaderOrder from './header';
+import axios from 'axios';
 
 export default function Order({navigation}) {
   const scrollRef = useRef();
   const [order, setOrder] = useState([]);
+  const [orderAPI, setOrderAPI] = useState();
   const [ds, setDs] = useState([]);
   const [isShowModalTimKiem, setIsShowModalTimKiem] = useState(false);
   const [click, setClick] = useState();
@@ -72,38 +74,63 @@ export default function Order({navigation}) {
       </View>
     </TouchableOpacity>
   );
-  const filterSearch1 = order?.filter(
-    e => e.categ_id?.[0] === 9 && e.categ_id?.[1] === 20,
+
+  const getListData = async () => {
+    try {
+      const res = await axios.get(
+        `https://cars-rental-api.herokuapp.com/products/`,
+        {},
+      );
+      setOrderAPI(res.data.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const dataAPI = order.concat(
+    orderAPI?.map(e => ({
+      ...e,
+      base_price: e?.basePrice,
+      product_name: e?.name,
+      categ_id: [e?.categoryId],
+    })),
   );
-  const filterSearch2 = order?.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 72,
+  console.log(dataAPI);
+  useEffect(() => {
+    getListData();
+  }, []);
+
+  const filterSearch1 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 9 && e?.categ_id?.[1] === 20,
   );
-  const filterSearch3 = order?.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 10,
+  const filterSearch2 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 1 && e?.categ_id?.[1] === 72,
   );
-  const filterSearch4 = order?.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id?.[1] === 2,
+  const filterSearch3 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 1 && e?.categ_id?.[1] === 10,
   );
-  const filterSearch5 = order?.filter(
-    e => e.categ_id?.[0] === 5 && e.categ_id?.[1] === 72,
+  const filterSearch4 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 1 && e?.categ_id?.[1] === 2,
   );
-  const filterSearch6 = order?.filter(
-    e => e.categ_id?.[0] === 18 && e.categ_id?.[1] === 22,
+  const filterSearch5 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 5 && e?.categ_id?.[1] === 72,
   );
-  const filterSearch7 = order?.filter(
-    e => e.categ_id?.[0] === 1 && e.categ_id.length === 1,
+  const filterSearch6 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 18 && e?.categ_id?.[1] === 22,
   );
-  const filterSearch8 = order?.filter(
-    e => e.categ_id?.[0] === 2 && e.categ_id.length === 1,
+  const filterSearch7 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 1 && e?.categ_id.length === 1,
   );
-  const filterSearch9 = order?.filter(
-    e => e.categ_id?.[0] === 5 && e.categ_id.length === 1,
+  const filterSearch8 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 2 && e?.categ_id.length === 1,
   );
-  const filterSearch10 = order?.filter(
-    e => e.categ_id?.[0] === 12 && e.categ_id.length === 1,
+  const filterSearch9 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 5 && e?.categ_id.length === 1,
   );
-  const filterSearch11 = order?.filter(
-    e => e.categ_id?.[0] === 18 && e.categ_id.length === 1,
+  const filterSearch10 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 12 && e?.categ_id.length === 1,
+  );
+  const filterSearch11 = dataAPI?.filter(
+    e => e?.categ_id?.[0] === 18 && e?.categ_id.length === 1,
   );
   const screenWidth = Dimensions.get('window').width;
   const imagesButton = [
@@ -176,10 +203,10 @@ export default function Order({navigation}) {
 
   const searchData = (search, data) => {
     let filterData = [];
-    for (var i = 0; i < order?.length; i++) {
+    for (var i = 0; i < dataAPI?.length; i++) {
       search = search.toLowerCase();
-      var product_name = order[i].product_name.toLocaleLowerCase();
-      if (product_name.includes(search)) {
+      var product_name = dataAPI[i]?.product_name.toLocaleLowerCase();
+      if (product_name?.includes(search)) {
         filterData.push(data[i]);
       }
     }
@@ -187,7 +214,7 @@ export default function Order({navigation}) {
     // setOrder(order)
   };
   useEffect(() => {
-    let b = searchData(search, order);
+    let b = searchData(search, dataAPI);
     setDs(b);
   }, [search]);
   return (
