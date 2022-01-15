@@ -66,6 +66,10 @@ export default function Cart({navigation}) {
     getUserData(user);
   }, []);
   console.log(giaTien);
+  const onRemoveAll = () => {
+    dispatch({type: 'REMOVE_ALL'});
+  };
+
   const onAddHistory = () => {
     dispatch({
       type: 'ADD_HISTORY',
@@ -75,7 +79,9 @@ export default function Cart({navigation}) {
       address: diaDiemNhan,
       user: user?.email,
     });
+    onRemoveAll();
     setTienMat(false);
+    navigation.goBack();
     // gui action toi reducer
   };
   const arrTongTien = listItem?.map(e => ({

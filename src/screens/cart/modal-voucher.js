@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,14 +7,29 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {dataVoucher} from './dataFetch';
-
+import axios from 'axios';
 export default function ModalVoucher({
   showModalVoucher,
   setShowModalVoucher,
   setVoucher,
 }) {
   const [clickVoucher, setClickVoucher] = useState();
+  const [dataVoucher, setDataVoucher] = useState();
+  const getListVoucher = async () => {
+    try {
+      const res = await axios.get(
+        `https://cars-rental-api.herokuapp.com/vouchers/`,
+        {},
+      );
+      setDataVoucher(res.data.data.vouchers);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getListVoucher();
+  }, []);
+
   return (
     <Modal visible={showModalVoucher} transparent>
       <View
@@ -37,7 +52,7 @@ export default function ModalVoucher({
             </Text>
           </View>
           <ScrollView>
-            {dataVoucher.map(e => (
+            {dataVoucher?.map(e => (
               <TouchableOpacity
                 onPress={() => {
                   setClickVoucher(e.id);
@@ -60,10 +75,7 @@ export default function ModalVoucher({
                         marginRight: 10,
                       }
                 }>
-                <Image
-                  source={{uri: e?.imgUrl}}
-                  style={{height: 60, width: 60}}
-                />
+                <Image source={{uri: e?.img}} style={{height: 60, width: 60}} />
                 <View>
                   <Text>{e?.title}</Text>
                   <Text style={{width: 220}}>{e?.description}</Text>
@@ -75,7 +87,7 @@ export default function ModalVoucher({
             <TouchableOpacity
               onPress={() => {
                 setShowModalVoucher(false),
-                  setVoucher(dataVoucher.find(e => e.id === clickVoucher));
+                  setVoucher(dataVoucher?.find(e => e.id === clickVoucher));
               }}
               style={{
                 width: 100,
