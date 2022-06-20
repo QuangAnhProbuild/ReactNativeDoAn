@@ -93,7 +93,6 @@ export default function Order({navigation}) {
       categ_id: [e?.categoryId],
     })),
   );
-  console.log(dataAPI);
   useEffect(() => {
     getListData();
   }, []);
