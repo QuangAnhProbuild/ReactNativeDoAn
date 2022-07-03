@@ -12,6 +12,7 @@ export default function HeaderOrder({
   scrollRef,
   navigation,
 }) {
+  console.log('asfsfdsfdfsdfdfs');
   const [showModalDanhMuc, setShowModalDanhMuc] = useState(false);
   const listItem = useSelector(store => store.cartReducer.cart);
   return (
