@@ -31,7 +31,7 @@ export default function DuLich({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Du lịch</Text>
       </ScrollView>
     </View>
   );

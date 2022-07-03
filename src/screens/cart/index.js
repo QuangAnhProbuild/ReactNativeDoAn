@@ -84,6 +84,7 @@ export default function Cart({navigation}) {
     navigation.goBack();
     // gui action toi reducer
   };
+
   const arrTongTien = listItem?.map(e => ({
     ...e,
     sumPrice: e?.quantity * e?.price,
@@ -123,6 +124,8 @@ export default function Cart({navigation}) {
         : 0,
     );
   }, [voucher, giaTien, listItem]);
+  console.log('abadcsfdf');
+  console.log('abadcsfdffdsgdfgfdhhdhf');
   return (
     <View>
       <View style={{height: Dimensions.get('window').height - 80}}>

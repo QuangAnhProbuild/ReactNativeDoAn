@@ -4,11 +4,9 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
-  StyleSheet,
   ScrollView,
   Button,
   Image,
-  TextInput,
 } from 'react-native';
 import {getProduct} from '../../service/Api';
 import styles from './css';
@@ -50,6 +48,7 @@ export default function Order({navigation}) {
 
   const renderItem = item => (
     <TouchableOpacity
+      key={item?._id}
       style={styles.touchable}
       onPress={moveToDetail(item)}
       key={item._id}>
@@ -94,7 +93,6 @@ export default function Order({navigation}) {
       categ_id: [e?.categoryId],
     })),
   );
-  console.log(dataAPI);
   useEffect(() => {
     getListData();
   }, []);

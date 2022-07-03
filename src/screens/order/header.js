@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 import ModalDanhMuc from './clickButtonDanhMuc';
 
 export default function HeaderOrder({
@@ -11,7 +12,9 @@ export default function HeaderOrder({
   scrollRef,
   navigation,
 }) {
+  console.log('asfsfdsfdfsdfdfs');
   const [showModalDanhMuc, setShowModalDanhMuc] = useState(false);
+  const listItem = useSelector(store => store.cartReducer.cart);
   return (
     <View style={{borderBottomColor: '#D8D8D8', borderBottomWidth: 1}}>
       <View
@@ -55,9 +58,27 @@ export default function HeaderOrder({
           <TouchableOpacity onPress={() => setIsShowModalTimKiem(true)}>
             <Ionicons name="search" size={25} color={'black'} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Ionicons name="cart-outline" size={25} color={'black'} />
-          </TouchableOpacity>
+          <View>
+            <View
+              style={{
+                backgroundColor: 'orange',
+                position: 'absolute',
+                width: 20,
+                height: 20,
+                borderRadius: 100,
+                marginTop: 15,
+                marginLeft: 10,
+                alignItems: 'center',
+                zIndex: 50,
+              }}>
+              <Text style={{color: 'white'}}>
+                {listItem.map(e => e.quantity).reduce((p, c) => p + c, 0)}
+              </Text>
+            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+              <Ionicons name="cart-outline" size={25} color={'black'} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <ModalDanhMuc
