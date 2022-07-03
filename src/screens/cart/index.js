@@ -125,7 +125,6 @@ export default function Cart({navigation}) {
     );
   }, [voucher, giaTien, listItem]);
   console.log('abadcsfdf');
-  console.log('abadcsfdffsgefs');
   return (
     <View>
       <View style={{height: Dimensions.get('window').height - 80}}>
