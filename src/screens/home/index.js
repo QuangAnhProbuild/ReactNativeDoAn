@@ -97,6 +97,7 @@ export default function TrangChuPage({navigation}) {
     outputRange: [0, screen == 'CoffeeLove' ? -380 : -1],
   });
   console.log(screen);
+  console.log('defffff');
   const ToggleScreen = () => {
     if (screen) {
       if (screen == 'UuDaiDacBiet') {
@@ -110,6 +111,7 @@ export default function TrangChuPage({navigation}) {
       }
     }
   };
+  console.log('aaaaaaaa');
   useEffect(() => {
     ToggleScreen();
   }, []);
