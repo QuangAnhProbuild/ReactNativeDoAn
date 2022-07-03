@@ -31,7 +31,7 @@ export default function DichVu({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Dịch vụ</Text>
       </ScrollView>
     </View>
   );

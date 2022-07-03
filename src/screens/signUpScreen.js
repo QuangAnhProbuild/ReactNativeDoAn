@@ -53,11 +53,10 @@ export default function SignUpScreen({navigation}) {
   };
   return (
     <View style={{flex: 1, backgroundColor: '#fff', paddingHorizontal: 12}}>
-      <View style={{flexDirection: 'row', marginTop: 50}}>
+      <View style={{flexDirection: 'row', marginTop: 20}}>
         <TouchableOpacity
           onPress={onGoBack}
           style={{
-            backgroundColor: '#f4f4f4',
             width: 50,
             height: 50,
             justifyContent: 'center',
@@ -82,7 +81,7 @@ export default function SignUpScreen({navigation}) {
       </View>
       <View
         style={{
-          flex: 1,
+          marginTop: 100,
           justifyContent: 'center',
         }}>
         <Image
@@ -92,17 +91,17 @@ export default function SignUpScreen({navigation}) {
             resizeMode: 'contain',
             width: 100,
           }}
-          source={require('../assets/images/Juice.png')}
+          source={require('../assets/images/logocoffeehouse.jpg')}
         />
         <Text
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
-            color: '#2FDBBC',
+            color: 'black',
             fontSize: 25,
             marginBottom: 50,
           }}>
-          DrinkApp
+          THE COFFEE HOUSE
         </Text>
         <MainInput
           title={'Họ và tên'}

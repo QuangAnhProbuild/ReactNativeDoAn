@@ -31,7 +31,7 @@ export default function GioiHan({navigation}) {
         </Text>
       </View>
       <ScrollView>
-        <Text>abcdsag</Text>
+        <Text>Giới hạn</Text>
       </ScrollView>
     </View>
   );

@@ -26,7 +26,7 @@ function Header({navigation}) {
   useEffect(() => {
     getUserData(user);
   }, []);
-  var date = dayjs(new Date());
+  var date = dayjs();
   return (
     <View style={styles.styleHeader}>
       <Text>

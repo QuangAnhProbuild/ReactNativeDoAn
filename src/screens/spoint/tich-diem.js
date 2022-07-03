@@ -1,24 +1,33 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Card from '../../components/card';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './css';
 import {getList} from '../../service/order.api';
+import {useSelector} from 'react-redux';
+import axios from 'axios';
 export default function TichDiem({setChangeScreen, navigation}) {
   const [dsVoucher, setDsVoucher] = useState();
-  const dsList = async () => {
+  const getListVoucher = async () => {
     try {
-      const res = await getList();
-      setDsVoucher(res.data.products);
+      const res = await axios.get(
+        `https://cars-rental-api.herokuapp.com/vouchers/`,
+        {},
+      );
+      setDsVoucher(res.data.data.vouchers);
+      console.log(dsVoucher);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    dsList();
+    getListVoucher();
   }, []);
+  const listProductHistory = useSelector(store => store.HistoryReducer.gi);
+  console.log(listProductHistory);
+
   return (
-    <View style={{marginLeft: 10, marginRight: 10}}>
+    <ScrollView style={{marginLeft: 10, marginRight: 10, height: 560}}>
       <Card />
       <View style={styles.viewStyle}>
         <TouchableOpacity
@@ -73,10 +82,19 @@ export default function TichDiem({setChangeScreen, navigation}) {
         </TouchableOpacity>
       </View>
       {dsVoucher?.map(e => (
-        <TouchableOpacity>
-          <Text>{e?.title}</Text>
+        <TouchableOpacity key={e?.id}>
+          <View style={{flexDirection: 'row', marginTop: 15}}>
+            <Image
+              source={{uri: e?.img}}
+              style={{height: 80, width: 80, borderRadius: 10}}
+            />
+            <View>
+              <Text>{e?.title}</Text>
+              <Text>{e?.description}</Text>
+            </View>
+          </View>
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 }
